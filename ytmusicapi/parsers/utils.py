@@ -25,7 +25,13 @@ def get_item_text(item, index, run_index=0, none_if_absent=False):
         return None
     if none_if_absent and len(column['text']['runs']) < run_index + 1:
         return None
-    return column['text']['runs'][run_index]['text']
+    
+    try:
+        item_text = column['text']['runs'][run_index]['text']
+    except IndexError:
+        item_text = str()
+        
+    return item_text
 
 
 def get_flex_column_item(item, index):
